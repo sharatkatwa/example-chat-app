@@ -3,15 +3,21 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
-const io = new Server(server)
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
+})
 
 app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/index.html`)
+  // res.sendFile(`${__dirname}/index.html`)
+  res.send('server is running')
 })
 
 io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg)
+  socket.on('chat', (msg) => {
+    io.emit('chat', msg)
+    console.log(msg)
   })
 })
 

@@ -10,16 +10,37 @@
     animation: logo-spin infinite 20s linear;
   }
 }
-
-.card {
-  padding: 2em;
+.App {
+  overflow: hidden;
+  padding: auto;
+  align-items: center;
 }
 
 .read-the-docs {
   color: #888;
 }
 form {
+  position: absolute;
   display: flex;
-  align-content: center;
-  margin-left: 100px;
+  size: 100%;
+}
+.msgDiv {
+  display: flex;
+  flex-direction: column;
+  background: #888;
+  border: none;
+  border-radius: 50px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+p {
+  margin-left: 20px;
+  align-self: center;
+}
+
+.btn {
+  margin-left: 10px;
+}
+.textInput {
+  border-radius: 10px;
 }

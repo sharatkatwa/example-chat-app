@@ -77,15 +77,25 @@
       form.addEventListener('submit', (e) => {
         e.preventDefault()
         if (input.value) {
-          socket.emit('chat message', input.value)
+          socket.emit('chat', input.value)
           input.value = ''
         }
       })
-
-      socket.on('chat message', (msg) => {
+      socket.on('chat', (msgData) => {
         const item = document.createElement('li')
-        item.textContent = msg
+        item.textContent = msgData
         messages.appendChild(item)
+      })
+
+      socket.on('storedChat', (msgData) => {
+        if (msgData.length) {
+          msgData.forEach((data) => {
+            const item = document.createElement('li')
+            item.textContent = data.message
+            messages.appendChild(item)
+          })
+        }
+
         window.scrollTo(0, document.body.scrollHeight)
       })
     </script>
